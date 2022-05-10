@@ -1,0 +1,6 @@
+1.  https://github.com/huangyangyi/Our-Pascal-Compiler (應該蠻多人看这个的，github還有很多其他的)
+（我們看最後參考那一份吧，要參考的話得參考同一份才行）
+2. https://github.com/IMMORTAL23/ZJU-Course_info/tree/master/junior/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/pro/%E5%8D%97%E5%A4%A7%E7%9A%84%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99 
+(南大的資料 雖然只有pdf 但很詳細可以先看看 理解一下)
+3. https://www.bilibili.com/video/BV1zJ411u7Vj?spm_id_from=333.999.0.0 (b站視頻，沒仔細看過，但應該有用)
+4. 最後會把參考資料刪掉，可能會保留南大的那份到文檔上，不用擔心別人看到
