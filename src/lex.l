@@ -21,7 +21,6 @@
 
 digit [0-9]
 INT [0-9]+
-letter [a-zA-Z]
 WORD [0-9a-zA-Z]+
 blank [ ]*
 IF if
@@ -62,5 +61,5 @@ FLOAT {INT}"."{INT}
 
 %%
 int yywrap(void){
-    return 0;    
+    return 1;    
 }
