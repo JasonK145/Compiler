@@ -19,35 +19,19 @@ int yylex();
 }
 
 /* declared tokens */
-%token <node> NUMBER
-%token <node> ENTER
+%token <node> INT FLOAT
+%token <node> RELOP
 %token <node> OTHERS WORD
+%token <node> LP RP COMMA
 %token <node> PLUS MINUS MUL DIV EQUAL
+%token <node> IF ELSE WHILE RETURN
 
 /* declarated not-terminal */
-%type <node> program exp term factor Num
+%type <node> Program Exp Declaration
 
 
 %%
-    // program : exp ENTER {printf("%d\n",$1);}
-
-    // exp:exp PLUS term { $$ = $1 + $3;}
-    //     | exp MINUS term {$$ = $1 - $3;}
-    //     | term      {$$ = $1};
-    
-    // term:term MUL factor {$$ = $1 * $3;}
-    //     | term DIV factor {$$ = $1 / $3;}
-    //     | factor {$$ = $1;};
-
-    // // factor: '^' Num {$$ = -$2}
-    // //     | Num '^' Num {$$ = pow($1,$3);}
-    // //     | Num {$$ = $1;};
-
-    // factor:  Num {$$ = $1}
-
-    // Num : NUMBER { $$ = CreateNode(@$.first_line, "Num", TOKEN_INT,1,$1); }
-
-
+    /*
     program : exp ENTER { $$ = CreateNode(@$.first_line, "program", TOKEN_NONE, 2, $1,$2); root = $$; }
 
     exp:exp PLUS term { $$ = CreateNode(@$.first_line, "exp", TOKEN_NONE, 3, $1,$2,$3); }
@@ -58,53 +42,51 @@ int yylex();
         | term DIV factor {$$ = CreateNode(@$.first_line, "term", TOKEN_NONE, 3, $1,$2,$3);}
         | factor { $$ = CreateNode(@$.first_line, "term", TOKEN_NONE, 1, $1); };
 
-    // factor: '^' Num {$$ = -$2}
-    //     | Num '^' Num {$$ = pow($1,$3);}
-    //     | Num {$$ = $1;};
 
     factor:  Num { $$ = CreateNode(@$.first_line, "factor", TOKEN_NONE, 1, $1); }
 
     Num : NUMBER { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
-
+    */
     
-    // program : declaration-list
-
-    // declaration-list : declaration-list declaration
-    //     | declaration
-
-    // declaration : var-declaration 
-    //     | fun-declaration
+    Program :        Declaration                { printf("Program\n"); $$ = CreateNode(@$.first_line, "Program", TOKEN_NONE, 1, $1); root = $$; printf("after root\n"); return 0;};
     
-    // var-declaration : type-specifier ID;
-    //     | type specifier ID [ NUM ];
+    Declaration :    Declaration Exp            { printf("Declaration Exp\n"); $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 2, $1, $2); }
+    |                Exp                        { printf("Exp\n"); $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); };
 
-    // type-specifier : int
-    //     | void
-    
-    // fun-declaration : type-specifier ID ( params ) 
-    //     | compound-stmt
-    
-    // params : params-list
-    //     | void
+    Exp :            WORD                       { printf("WORD\n"); $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
 
-    // param-list : param-list , param
-    //     | param
+  /*  
+    Declaration :   Declaration Exp { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 2, $1, $2); }
+    |               Exp     { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); };
 
+    Exp :   Exp PLUS Term       { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
+    |       Exp MINUS Term      { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
+    |       Term                { printf("Exp!\n"); $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); }
+    |       WORD                { printf("!!!"); $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
+
+  /*  Args :      Exp COMMA Args  { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 3, $1, $3); }
+    |           Exp             { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 1, $1); };     
     
+    Term :  Term MUL Factor     { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
+    |       Term DIV Factor     { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
+    |       Factor                { printf("Term\n"); $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE, 1, $1); printf("Term done!\n");};
+
+    Factor : Num { $$ = CreateNode(@$.first_line, "Factor", TOKEN_NONE, 1, $1); };
+
+    Num :       INT             { printf("Num\n"); $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
+    |           FLOAT           { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
+    |           LP Exp RP       { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 3, $1, $3); }; */
+
+
 %%
 
-
-
-// int main(){
-//     return yyparse();
-// }
 
 
 extern int yylineno;
 extern void yyrestart(FILE*);
 
 int main(int argc, char** argv) {
-    if (argc < 2) {
+    if (argc <= 1) {
         yyparse();
         return 1;
     }
@@ -114,8 +96,10 @@ int main(int argc, char** argv) {
         perror(argv[1]);
         return 1;
     }
-
     yyrestart(f);
     yyparse();
+    printf("before tree\n");
+    tree(root, 0);
+    printf("after tree!!\n");
     return 0;
 }

@@ -71,8 +71,28 @@ static Node* CreateTokenNode(int no_line, char* name, TypeNode type, char* val){
     return curNode;
 }
 
-static void tree (Node* root){
-    
+static void tree (Node* node, int height){
+    if (node == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < height; i++) {
+        printf("  ");
+    }
+     printf("%s", node->name);
+    if (node->type == TOKEN_NONE) {
+        printf(" (%d)", node->no_line);
+    } else if (node->type == TOKEN_TYPE || node->type == TOKEN_ID ||
+               node->type == TOKEN_INT) {
+        printf(": %s", node->val);
+    } else if (node->type == TOKEN_FLOAT) {
+        printf(": %lf", atof(node->val));
+    }
+    printf("\n");
+    height++;
+    tree(node->CHILD_NODE[0], height);
+    tree(node->CHILD_NODE[1], height);
+    tree(node->CHILD_NODE[2], height);
 }
 
 
