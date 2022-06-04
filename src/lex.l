@@ -20,8 +20,6 @@
 %option yylineno
 
 digit [0-9]
-INT [0-9]+
-WORD [0-9a-zA-Z]+
 blank [ ]*
 IF if
 ELSE else
@@ -30,7 +28,8 @@ RELOP >|<|>=|<=|==|!=
 RETURN return
 LP "("
 RP ")"
-
+INT [0-9]+
+WORD [_0-9a-zA-Z]+
 FLOAT {INT}"."{INT}
 %%
 

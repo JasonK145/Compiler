@@ -321,7 +321,7 @@ static yyconst int yy_ec[256] =
        15,   16,    1,    1,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-        1,    1,    1,    1,    1,    1,   17,   17,   17,   17,
+        1,    1,    1,    1,   17,    1,   17,   17,   17,   17,
 
        18,   19,   17,   20,   21,   17,   17,   22,   17,   23,
        17,   17,   17,   24,   25,   26,   27,   17,   28,   17,
@@ -583,7 +583,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 35 "lex.l"
+#line 34 "lex.l"
 
 
 #line 590 "lex.yy.c"
@@ -679,102 +679,102 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 37 "lex.l"
+#line 36 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "IF", TOKEN_OTHERS, yytext); return IF; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 38 "lex.l"
+#line 37 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "ELSE", TOKEN_OTHERS, yytext); return ELSE; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 39 "lex.l"
+#line 38 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "IF", TOKEN_OTHERS, yytext); return IF; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 40 "lex.l"
+#line 39 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "RELOP", TOKEN_OTHERS, yytext); return RELOP; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "lex.l"
+#line 40 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "RETURN", TOKEN_OTHERS, yytext); return RETURN;  } 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 43 "lex.l"
+#line 42 "lex.l"
 { printf("INT detected\n"); yylval.node = CreateTokenNode(yylineno,"INT", TOKEN_INT, yytext ); return INT;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 44 "lex.l"
+#line 43 "lex.l"
 { printf("FLOAT detectd\n"); yylval.node = CreateTokenNode(yylineno, "FLOAT", TOKEN_FLOAT, yytext); return FLOAT;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 45 "lex.l"
+#line 44 "lex.l"
 { printf("enter detected\n"); yycolumn = 1;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 46 "lex.l"
+#line 45 "lex.l"
 { }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 48 "lex.l"
+#line 47 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "LP", TOKEN_OTHERS, yytext); return LP; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 49 "lex.l"
+#line 48 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "RP", TOKEN_OTHERS, yytext); return RP; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 51 "lex.l"
+#line 50 "lex.l"
 { printf("word detected\n"); yylval.node = CreateTokenNode(yylineno, "WORD", TOKEN_OTHERS, yytext); return WORD; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 52 "lex.l"
+#line 51 "lex.l"
 { printf("+ detected\n"); yylval.node = CreateTokenNode(yylineno,"PLUS", TOKEN_OTHERS, yytext); return PLUS; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 53 "lex.l"
+#line 52 "lex.l"
 { printf("- detected\n"); yylval.node = CreateTokenNode(yylineno, "MINUS",TOKEN_OTHERS, yytext); return MINUS; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 54 "lex.l"
+#line 53 "lex.l"
 { printf("* detected\n"); yylval.node = CreateTokenNode(yylineno, "MUL",TOKEN_OTHERS, yytext); return MUL; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 55 "lex.l"
+#line 54 "lex.l"
 { printf("/ detected\n"); yylval.node = CreateTokenNode(yylineno, "DIV",TOKEN_OTHERS, yytext); return DIV; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 56 "lex.l"
+#line 55 "lex.l"
 { printf("= detected\n"); yylval.node = CreateTokenNode(yylineno, "EQUAL",TOKEN_OTHERS, yytext); return EQUAL; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 58 "lex.l"
+#line 57 "lex.l"
 { yylval.node = CreateTokenNode(yylineno, "COMMA", TOKEN_OTHERS, yytext); return COMMA;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 59 "lex.l"
+#line 58 "lex.l"
 { }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 62 "lex.l"
+#line 61 "lex.l"
 ECHO;
 	YY_BREAK
 #line 781 "lex.yy.c"
@@ -1661,7 +1661,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 62 "lex.l"
+#line 61 "lex.l"
 
 int yywrap(void){
     return 1;    

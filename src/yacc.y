@@ -55,8 +55,9 @@ int yylex();
 
     Exp :   Exp PLUS Term                       { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
     |       Exp MINUS Term                      { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
+    |       Exp EQUAL Term                       { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
     |       Term                                { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); }
-    |       WORD                                { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
+    
 
     Term :  Term MUL Num                        { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
     |       Term DIV Num                        { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
@@ -65,28 +66,7 @@ int yylex();
     Num :       INT                             { printf("Num\n"); $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
     |           FLOAT                           { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
     |           LP Exp RP                       { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 3, $1, $3); };
-
-  /*  
-    Declaration :   Declaration Exp { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 2, $1, $2); }
-    |               Exp     { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); };
-
-    Exp :   Exp PLUS Term       { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
-    |       Exp MINUS Term      { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
-    |       Term                { printf("Exp!\n"); $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); }
-    |       WORD                { printf("!!!"); $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
-
-  /*  Args :      Exp COMMA Args  { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 3, $1, $3); }
-    |           Exp             { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 1, $1); };     
-    
-    Term :  Term MUL Factor     { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
-    |       Term DIV Factor     { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
-    |       Factor                { printf("Term\n"); $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE, 1, $1); printf("Term done!\n");};
-
-    Factor : Num { $$ = CreateNode(@$.first_line, "Factor", TOKEN_NONE, 1, $1); };
-
-    Num :       INT             { printf("Num\n"); $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
-    |           FLOAT           { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
-    |           LP Exp RP       { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 3, $1, $3); }; */
+    |           WORD                            { $$ = CreateNode(@$.first_line, "ID", TOKEN_NONE, 1, $1); };
 
 
 %%
