@@ -41,21 +41,29 @@
    enum yytokentype {
      INT = 258,
      FLOAT = 259,
-     RELOP = 260,
-     OTHERS = 261,
-     WORD = 262,
-     LP = 263,
-     RP = 264,
-     COMMA = 265,
-     PLUS = 266,
-     MINUS = 267,
-     MUL = 268,
-     DIV = 269,
-     EQUAL = 270,
-     IF = 271,
-     ELSE = 272,
-     WHILE = 273,
-     RETURN = 274
+     WORD = 260,
+     TYPE = 261,
+     RELOP = 262,
+     OTHERS = 263,
+     LP = 264,
+     RP = 265,
+     LC = 266,
+     RC = 267,
+     COMMA = 268,
+     PLUS = 269,
+     MINUS = 270,
+     MUL = 271,
+     DIV = 272,
+     EQUAL = 273,
+     AND = 274,
+     OR = 275,
+     NOT = 276,
+     DOT = 277,
+     IF = 278,
+     ELSE = 279,
+     WHILE = 280,
+     RETURN = 281,
+     SEMI = 282
    };
 #endif
 
@@ -73,7 +81,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 77 "yacc.tab.h"
+#line 85 "yacc.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
