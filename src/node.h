@@ -1,6 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 #include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -42,6 +43,9 @@ static Node* CreateNode(int no_line, char* name, TypeNode type, int now, ...){
     va_list vaList;
     va_start(vaList, now); 
 
+    for(int i = 0; i<3; i++){
+        curNode->CHILD_NODE[i]= NULL;   
+    }
     for (int i = 0; i < now; i++){
         curNode->CHILD_NODE[i] = va_arg(vaList,struct node*);
     }
@@ -75,7 +79,7 @@ static void tree (Node* node, int height){
     if (node == NULL) {
         return;
     }
-
+ 
     for (int i = 0; i < height; i++) {
         printf("  ");
     }

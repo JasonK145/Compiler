@@ -704,7 +704,7 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 #line 41 "lex.l"
-{ yylval.node = CreateTokenNode(yylineno, "IF", TOKEN_OTHERS, yytext); return IF; }
+{ yylval.node = CreateTokenNode(yylineno, "WHILE", TOKEN_OTHERS, yytext); return WHILE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
@@ -719,7 +719,7 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 44 "lex.l"
-{ yylval.node = CreateTokenNode(yylineno, "TYPE", TOKEN_OTHERS, yytext); return TYPE; }
+{ printf("type detected!\n"); yylval.node = CreateTokenNode(yylineno, "TYPE", TOKEN_OTHERS, yytext); return TYPE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
@@ -764,7 +764,7 @@ YY_RULE_SETUP
 case 15:
 YY_RULE_SETUP
 #line 57 "lex.l"
-{ yylval.node = CreateTokenNode(yylineno, "WORD", TOKEN_OTHERS, yytext); return WORD; }
+{printf("Word detected!\n"); yylval.node = CreateTokenNode(yylineno, "WORD", TOKEN_OTHERS, yytext); return WORD; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP

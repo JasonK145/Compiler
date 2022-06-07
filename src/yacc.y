@@ -59,20 +59,21 @@ int yylex();
     Declaration :       VarDec                              { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); }
     |                   FunDec                              { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); };
 
-    VarDec :            TypeSpec WORD                       { $$ = CreateNode(@$.first_line, "VarDec", TOKEN_NONE, 2, $1, $2); };
+    VarDec :            TypeSpec WORD                       { $$ = CreateNode(@$.first_line, "VarDec", TOKEN_NONE, 2, $1, $2); }
+    |                   TypeSpec WORD SEMI                  { $$ = CreateNode(@$.first_line, "VarDec", TOKEN_NONE, 3, $1, $2, $3); };
 
     FunDec:             TypeSpec WORD Func                  { $$ = CreateNode(@$.first_line, "FunDec", TOKEN_NONE, 3, $1, $2, $3); }
     |                   CompStmt                            { $$ = CreateNode(@$.first_line, "FunDec", TOKEN_NONE, 1, $1); };
 
-    Func:               LP VarList RP                       { $$ = CreateNode(@$.first_line, "Func", TOKEN_NONE, 3, $1, $2, $3); }
-    |                   LP RP                               { $$ = CreateNode(@$.first_line, "Func", TOKEN_NONE, 2, $1, $2); };
+    Func:               LP VarList RP                       {  $$ = CreateNode(@$.first_line, "Func", TOKEN_NONE, 3, $1, $2, $3); }
+    |                   LP RP                               {  $$ = CreateNode(@$.first_line, "Func", TOKEN_NONE, 2, $1, $2); };
     
     VarList:            Params COMMA VarList                { $$ = CreateNode(@$.first_line, "VarList", TOKEN_NONE, 3, $1, $2, $3); }
     |                   Params                              { $$ = CreateNode(@$.first_line, "VarList", TOKEN_NONE, 1, $1); };
 
     Params:             TypeSpec VarDec                     { $$ = CreateNode(@$.first_line, "Params", TOKEN_NONE, 2, $1, $2); };
 
-    TypeSpec:           TYPE                                {printf("type\n"); $$ = CreateNode(@$.first_line, "TypeSpec", TOKEN_NONE, 1, $1);};
+    TypeSpec:           TYPE                                { $$ = CreateNode(@$.first_line, "TypeSpec", TOKEN_NONE, 1, $1);};
 
     CompStmt:           LC LSStatement RC                  { $$ = CreateNode(@$.first_line, "CompStmt", TOKEN_NONE, 2, $1, $2); };
 
@@ -124,7 +125,7 @@ int yylex();
     |                   Num                                 { $$ = CreateNode(@$.first_line, "Factor", TOKEN_NONE, 1, $1); }
     |                   WORD                                { $$ = CreateNode(@$.first_line, "Factor", TOKEN_NONE, 1, $1); };
 
-    Num:                INT                                 {printf("hi"); $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
+    Num:                INT                                 { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
     |                   FLOAT                               { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); };
 
    // Args:               Exp COMMA Args                      { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 3, $1, $2, $3); }
