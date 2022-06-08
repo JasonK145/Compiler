@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <math.h>
 #include "node.h"
+#include "semantic.h"
 #define YYERROR_VERBOSE 1
 Node* root;
 
@@ -53,7 +54,7 @@ int yylex();
     
     Program :           DeclarationList                     { $$ = CreateNode(@$.first_line, "Program", TOKEN_NONE, 1, $1); root = $$; };
     
-    DeclarationList :  DeclarationList Declaration          { $$ = CreateNode(@$.first_line, "DeclarationList", TOKEN_NONE, 2, $1, $2); }
+    DeclarationList :   DeclarationList Declaration          { $$ = CreateNode(@$.first_line, "DeclarationList", TOKEN_NONE, 2, $1, $2); }
     |                   Declaration                         { $$ = CreateNode(@$.first_line, "DeclarationList", TOKEN_NONE, 1, $1); };
 
     Declaration :       VarDec                              { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); }
@@ -177,6 +178,6 @@ int main(int argc, char** argv) {
     }
     yyrestart(f);
     yyparse();
-    tree(root, 0);
+    traverseTree(root);
     return 0;
 }

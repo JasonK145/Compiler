@@ -74,6 +74,7 @@
 #include <ctype.h>
 #include <math.h>
 #include "node.h"
+#include "semantic.h"
 #define YYERROR_VERBOSE 1
 Node* root;
 
@@ -85,7 +86,7 @@ int yylex();
 
 
 /* Line 189 of yacc.c  */
-#line 89 "yacc.tab.c"
+#line 90 "yacc.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -147,14 +148,14 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 17 "yacc.y"
+#line 18 "yacc.y"
 
     Node* node;
 
 
 
 /* Line 214 of yacc.c  */
-#line 158 "yacc.tab.c"
+#line 159 "yacc.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -179,7 +180,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 183 "yacc.tab.c"
+#line 184 "yacc.tab.c"
 
 #ifdef short
 # undef short
@@ -484,12 +485,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    54,    54,    56,    57,    59,    60,    62,    63,    65,
-      66,    68,    69,    71,    72,    74,    76,    78,    80,    82,
-      83,    85,    86,    88,    89,    90,    91,    92,    94,    96,
-      98,   100,   101,   103,   105,   107,   108,   110,   111,   113,
-     114,   116,   117,   118,   120,   121,   122,   124,   125,   126,
-     128,   129
+       0,    55,    55,    57,    58,    60,    61,    63,    64,    66,
+      67,    69,    70,    72,    73,    75,    77,    79,    81,    83,
+      84,    86,    87,    89,    90,    91,    92,    93,    95,    97,
+      99,   101,   102,   104,   106,   108,   109,   111,   112,   114,
+     115,   117,   118,   119,   121,   122,   123,   125,   126,   127,
+     129,   130
 };
 #endif
 
@@ -1477,357 +1478,357 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 54 "yacc.y"
+#line 55 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Program", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); root = (yyval.node); ;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 56 "yacc.y"
+#line 57 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "DeclarationList", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 57 "yacc.y"
+#line 58 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "DeclarationList", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 59 "yacc.y"
+#line 60 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Declaration", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 60 "yacc.y"
+#line 61 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Declaration", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 62 "yacc.y"
+#line 63 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "VarDec", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 63 "yacc.y"
+#line 64 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "VarDec", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 65 "yacc.y"
+#line 66 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "FunDec", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 66 "yacc.y"
+#line 67 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "FunDec", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 68 "yacc.y"
+#line 69 "yacc.y"
     {  (yyval.node) = CreateNode((yyloc).first_line, "Func", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 69 "yacc.y"
+#line 70 "yacc.y"
     {  (yyval.node) = CreateNode((yyloc).first_line, "Func", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 71 "yacc.y"
+#line 72 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "VarList", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 72 "yacc.y"
+#line 73 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "VarList", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 74 "yacc.y"
+#line 75 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Params", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 76 "yacc.y"
+#line 77 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "TypeSpec", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node));;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 78 "yacc.y"
+#line 79 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "CompStmt", TOKEN_NONE, 2, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node)); ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 80 "yacc.y"
+#line 81 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "LSStatement", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 82 "yacc.y"
+#line 83 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "LocDec", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 83 "yacc.y"
+#line 84 "yacc.y"
     { (yyval.node) = NULL ;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 85 "yacc.y"
+#line 86 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "StmtList", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 86 "yacc.y"
+#line 87 "yacc.y"
     { (yyval.node) = NULL ;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 88 "yacc.y"
+#line 89 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Stmt", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 89 "yacc.y"
+#line 90 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Stmt", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 90 "yacc.y"
+#line 91 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Stmt", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 91 "yacc.y"
+#line 92 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Stmt", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 92 "yacc.y"
+#line 93 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Stmt", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 94 "yacc.y"
+#line 95 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "ExpStmt", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 96 "yacc.y"
+#line 97 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "SelectStmt", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 98 "yacc.y"
+#line 99 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "LPExpStmt", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 100 "yacc.y"
+#line 101 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "RpSide", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 101 "yacc.y"
+#line 102 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "RpSide", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 103 "yacc.y"
+#line 104 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "ElseStmt", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 105 "yacc.y"
+#line 106 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "WhileStmt", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 107 "yacc.y"
+#line 108 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "ReStmt", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 108 "yacc.y"
+#line 109 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "ReStmt", TOKEN_NONE, 2, (yyvsp[(1) - (2)].node), (yyvsp[(2) - (2)].node)); ;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 110 "yacc.y"
+#line 111 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Exp", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 111 "yacc.y"
+#line 112 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Exp", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 113 "yacc.y"
+#line 114 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "SimpleExp", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 114 "yacc.y"
+#line 115 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "SimpleExp", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 116 "yacc.y"
+#line 117 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "AddExp", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 117 "yacc.y"
+#line 118 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "AddExp", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 118 "yacc.y"
+#line 119 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "AddExp", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 120 "yacc.y"
+#line 121 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Term", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 121 "yacc.y"
+#line 122 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Term", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 122 "yacc.y"
+#line 123 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Term", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 124 "yacc.y"
+#line 125 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Factor", TOKEN_NONE, 3, (yyvsp[(1) - (3)].node), (yyvsp[(2) - (3)].node), (yyvsp[(3) - (3)].node)); ;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 125 "yacc.y"
+#line 126 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Factor", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 126 "yacc.y"
+#line 127 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Factor", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 128 "yacc.y"
+#line 129 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Num", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 129 "yacc.y"
+#line 130 "yacc.y"
     { (yyval.node) = CreateNode((yyloc).first_line, "Num", TOKEN_NONE, 1, (yyvsp[(1) - (1)].node)); ;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1831 "yacc.tab.c"
+#line 1832 "yacc.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2046,7 +2047,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 160 "yacc.y"
+#line 161 "yacc.y"
 
 
 
@@ -2067,6 +2068,6 @@ int main(int argc, char** argv) {
     }
     yyrestart(f);
     yyparse();
-    tree(root, 0);
+    traverseTree(root);
     return 0;
 }
