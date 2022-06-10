@@ -3,28 +3,29 @@
 
 #include"node.h"
 //typedef struct type* Type;
-/*typedef struct fieldList* FieldList;
+typedef struct fieldList* pFieldList;
 
-enum struct BaseType {INT,FLOAT};
+//enum struct BaseType {INT,FLOAT};
 
 typedef struct fieldList{
     char* name;
-     BaseType type;
-    FieldList *next;
+    int type;
+    pFieldList next;
 }FieldList;
-*/
+
+
 
 
 void traverseTree(Node* node);
  
 
-void Declaration();
+void Declaration(Node* node);
 void VarDec();
 void FunDec();
 void Func();
 void VarList();
 void Params();
-int Specifier(Node* node);
+int TypeSpec(Node* node);
 void CompStmt();
 void LSStatement();
 void LocDec();

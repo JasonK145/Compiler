@@ -41,7 +41,7 @@ FLOAT {INT}"."{INT}
 {WHILE} { yylval.node = CreateTokenNode(yylineno, "WHILE", TOKEN_OTHERS, yytext); return WHILE; }
 {RELOP} { yylval.node = CreateTokenNode(yylineno, "RELOP", TOKEN_OTHERS, yytext); return RELOP; }
 {RETURN} { yylval.node = CreateTokenNode(yylineno, "RETURN", TOKEN_OTHERS, yytext); return RETURN;  } 
-{TYPE} { printf("type detected!\n"); yylval.node = CreateTokenNode(yylineno, "TYPE", TOKEN_OTHERS, yytext); return TYPE; }
+{TYPE} { printf("%s",yytext); yylval.node = CreateTokenNode(yylineno, "TYPE", TOKEN_TYPE, yytext); return TYPE; }
 
 {INT} { printf("INT detected\n"); yylval.node = CreateTokenNode(yylineno,"INT", TOKEN_INT, yytext ); return INT;}
 {FLOAT} { printf("FLOAT detectd\n"); yylval.node = CreateTokenNode(yylineno, "FLOAT", TOKEN_FLOAT, yytext); return FLOAT;}
@@ -54,7 +54,7 @@ FLOAT {INT}"."{INT}
 {RC} { yylval.node = CreateTokenNode(yylineno, "RC", TOKEN_OTHERS, yytext); return RC; }
 
 
-{WORD} {printf("Word detected!\n"); yylval.node = CreateTokenNode(yylineno, "WORD", TOKEN_OTHERS, yytext); return WORD; }
+{WORD} {printf("Word detected!\n"); yylval.node = CreateTokenNode(yylineno, "WORD", TOKEN_ID, yytext); return WORD; }
 "+" { yylval.node = CreateTokenNode(yylineno,"PLUS", TOKEN_OTHERS, yytext); return PLUS; }
 "-" { yylval.node = CreateTokenNode(yylineno, "MINUS",TOKEN_OTHERS, yytext); return MINUS; }
 "*" { yylval.node = CreateTokenNode(yylineno, "MUL",TOKEN_OTHERS, yytext); return MUL; }

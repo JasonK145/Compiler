@@ -76,9 +76,9 @@ int yylex();
 
     TypeSpec:           TYPE                                { $$ = CreateNode(@$.first_line, "TypeSpec", TOKEN_NONE, 1, $1);};
 
-    CompStmt:           LC LSStatement RC                  { $$ = CreateNode(@$.first_line, "CompStmt", TOKEN_NONE, 2, $1, $2); };
+    CompStmt:           LC LSStatement RC                   { $$ = CreateNode(@$.first_line, "CompStmt", TOKEN_NONE, 2, $1, $2); };
 
-    LSStatement:       LocDec StmtList                     { $$ = CreateNode(@$.first_line, "LSStatement", TOKEN_NONE, 2, $1, $2); };
+    LSStatement:        LocDec StmtList                     { $$ = CreateNode(@$.first_line, "LSStatement", TOKEN_NONE, 2, $1, $2); };
 
     LocDec:             LocDec VarDec                       { $$ = CreateNode(@$.first_line, "LocDec", TOKEN_NONE, 2, $1, $2); }
     |                                                       { $$ = NULL };
@@ -96,7 +96,7 @@ int yylex();
     
     SelectStmt:         IF LPExpStmt                        { $$ = CreateNode(@$.first_line, "SelectStmt", TOKEN_NONE, 2, $1, $2); };
     
-    LPExpStmt:          LP Exp RpSide                       { $$ = CreateNode(@$.first_line, "LPExpStmt", TOKEN_NONE, 3, $1, $2, $3); };
+/**/   LPExpStmt:          LP Exp RpSide                       { $$ = CreateNode(@$.first_line, "LPExpStmt", TOKEN_NONE, 3, $1, $2, $3); };
 
     RpSide:             RP Stmt ElseStmt                    { $$ = CreateNode(@$.first_line, "RpSide", TOKEN_NONE, 3, $1, $2, $3); }
     |                   RP Stmt                             { $$ = CreateNode(@$.first_line, "RpSide", TOKEN_NONE, 2, $1, $2); };
@@ -109,9 +109,9 @@ int yylex();
     |                   RETURN SEMI                         { $$ = CreateNode(@$.first_line, "ReStmt", TOKEN_NONE, 2, $1, $2); };
 
     Exp:                WORD EQUAL Exp                      { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1, $2, $3); }
-    |                   SimpleExp                          { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
+    |                   SimpleExp                           { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); };
 
-    SimpleExp:         AddExp RELOP AddExp                 { $$ = CreateNode(@$.first_line, "SimpleExp", TOKEN_NONE, 3, $1, $2, $3); }
+    SimpleExp:          AddExp RELOP AddExp                 { $$ = CreateNode(@$.first_line, "SimpleExp", TOKEN_NONE, 3, $1, $2, $3); }
     |                   AddExp                              { $$ = CreateNode(@$.first_line, "SimpleExp", TOKEN_NONE, 1, $1); };
 
     AddExp:             AddExp PLUS Term                    { $$ = CreateNode(@$.first_line, "AddExp", TOKEN_NONE, 3, $1, $2, $3); }
@@ -129,32 +129,8 @@ int yylex();
     Num:                INT                                 { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
     |                   FLOAT                               { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); };
 
-   // Args:               Exp COMMA Args                      { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 3, $1, $2, $3); }
-    //|                   Exp                                 { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 1, $1); };
-    /*
-    Declaration :    Declaration Args           { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 2, $1, $2); }
-    |                Args                       { $$ = CreateNode(@$.first_line, "Declaration", TOKEN_NONE, 1, $1); };
-
-    Args :           Exp COMMA Args             { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 3, $1, $3); }
-    |                Exp                        { $$ = CreateNode(@$.first_line, "Args", TOKEN_NONE, 1, $1); };
-    
-    FunDec:          WORD 
-   
-   
-    Exp :           Exp PLUS Term               { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
-    |               Exp MINUS Term              { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
-    |               Exp EQUAL Term              { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 3, $1,$2,$3); }
-    |               Term                        { $$ = CreateNode(@$.first_line, "Exp", TOKEN_NONE, 1, $1); }
-    
-
-    Term :          Term MUL Num                { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
-    |               Term DIV Num                { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE,  3, $1,$2,$3); }
-    |               Num                         { $$ = CreateNode(@$.first_line, "Term", TOKEN_NONE, 1, $1); };
-
-    Num :           INT                         { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
-    |               FLOAT                       { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 1, $1); }
-    |               LP Exp RP                   { $$ = CreateNode(@$.first_line, "Num", TOKEN_NONE, 3, $1, $3); };
-    |               WORD                        { $$ = CreateNode(@$.first_line, "ID", TOKEN_NONE, 1, $1); };
+   /*
+    之后待實驗的有 {//} if(a relop b){}
     */
    
 
@@ -178,6 +154,7 @@ int main(int argc, char** argv) {
     }
     yyrestart(f);
     yyparse();
+    tree(root, 0);
     traverseTree(root);
     return 0;
 }
