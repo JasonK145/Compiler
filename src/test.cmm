@@ -1,5 +1,7 @@
+int a;
+a =3;
 int main(){
-    int ab;
-    ab = 32;
+    int b;
+    b = 1;
 }
-    
+
